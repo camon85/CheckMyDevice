@@ -16,7 +16,8 @@ limitations under the License.
 -->
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:text="픽셀"
+          android:id="@+id/text_pixel"
+          android:text="화면을 터치하세요"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:padding="16dp"
