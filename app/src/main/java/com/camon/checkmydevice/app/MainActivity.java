@@ -1,11 +1,10 @@
 package com.camon.checkmydevice.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener, CheckListFragment.OnCheckListSelectedListener {
@@ -42,13 +41,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onCheckItemSelected(int position) {
         // The user selected the headline of an article from the HeadlinesFragment
 
-        if (position == 0) {
+        if (position == 0) { // Basic Device Infomation
             BasicFragment newFragment = new BasicFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, newFragment);
             transaction.addToBackStack(null);
             transaction.commit();
-        } else if (position == 1) {
+        } else if (position == 1) { // Pixels Check
             // TODO fragment는 notitle, fullscreen이 안되는듯
             // activity를 사용하도록 수정해야 한다... ㅠㅠ
 
@@ -63,6 +62,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             transaction.replace(R.id.fragment_container, newFragment);
             transaction.addToBackStack(null);
             transaction.commit();
+        } else if (position == 2) { // Multi Touch
+            Intent intent = new Intent(this, MultiTouchActivity.class);
+            startActivity(intent);
+        } else if (position == 3) { // Sensor
+
         }
 
     }
