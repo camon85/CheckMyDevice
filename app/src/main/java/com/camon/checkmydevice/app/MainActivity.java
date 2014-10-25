@@ -54,7 +54,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             Intent intent = new Intent(this, MultiTouchActivity.class);
             startActivity(intent);
         } else if (position == 3) { // Sensor
-
+            Intent intent = new Intent(this, SensorTestActivity.class);
+            startActivity(intent);
         }
 
     }
