@@ -1,22 +1,15 @@
 package com.camon.checkmydevice.app;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Random;
 
-/**
- * Created by Administrator on 2014-10-22.
- */
-public class PixelsFragment extends Fragment implements View.OnTouchListener {
-
+public class PixelActivity extends Activity implements View.OnTouchListener{
     static int[] colorList = {
             Color.RED,
             Color.GREEN,
@@ -25,22 +18,21 @@ public class PixelsFragment extends Fragment implements View.OnTouchListener {
             Color.BLACK,
             Color.WHITE,
     };
+    private int currentIndex = 0;
     private TextView tv;
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pixels_check, container, false);
-        tv = (TextView) view.findViewById(R.id.text_pixel);
-        view.setOnTouchListener(this);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pixel);
 
-        return view;
+        tv = (TextView) findViewById(R.id.text_pixel);
+        tv.setOnTouchListener(this);
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        Log.i("PixelsFragment", "ACTION:" + motionEvent.getAction());
+        Log.i("PixelActivity", "ACTION:" + motionEvent.getAction());
         clearText();
         changeBackgroundColor(view);
 
@@ -55,8 +47,10 @@ public class PixelsFragment extends Fragment implements View.OnTouchListener {
     }
 
     private void changeBackgroundColor(View view) {
-        Random rd = new Random();
-        int selectedIndex = rd.nextInt(colorList.length);
-        view.setBackgroundColor(colorList[selectedIndex]);
+        view.setBackgroundColor(colorList[currentIndex++]);
+
+        if (currentIndex >= colorList.length) {
+            currentIndex = 0;
+        }
     }
 }

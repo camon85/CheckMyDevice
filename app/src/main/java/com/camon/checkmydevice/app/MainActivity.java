@@ -48,20 +48,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             transaction.addToBackStack(null);
             transaction.commit();
         } else if (position == 1) { // Pixels Check
-            // TODO fragment는 notitle, fullscreen이 안되는듯
-            // activity를 사용하도록 수정해야 한다... ㅠㅠ
-
-    /*        requestWindowFeature(Window.FEATURE_NO_TITLE);
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
-//            setContentView(R.layout.main);
-
-
-            PixelsFragment newFragment = new PixelsFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, newFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            Intent intent = new Intent(this, PixelActivity.class);
+            startActivity(intent);
         } else if (position == 2) { // Multi Touch
             Intent intent = new Intent(this, MultiTouchActivity.class);
             startActivity(intent);
