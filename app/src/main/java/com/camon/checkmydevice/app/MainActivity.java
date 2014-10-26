@@ -8,11 +8,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener, CheckListFragment.OnCheckListSelectedListener {
+public class MainActivity extends FragmentActivity implements CheckListFragment.OnCheckListSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +21,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             return;
         }
 
+        showCheckListFragment();
+    }
+
+    private void showCheckListFragment() {
         // Create an instance of ExampleFragment
         CheckListFragment checkListFragment = new CheckListFragment();
 
@@ -33,13 +35,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         // Add the fragment to the 'fragment_container' FrameLayout
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, checkListFragment).commit();
-
-    }
-
-
-    @Override
-    public void onClick(View view) {
-
     }
 
     @Override
@@ -77,10 +72,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_dev_info) {
-            Toast.makeText(this, "테스트", Toast.LENGTH_SHORT).show();
+        if (R.id.action_dev_info == id) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("개발자 소개");
+            builder.setView(getLayoutInflater().inflate(R.layout.dev_info, null));
+            builder.setNegativeButton("닫기", null).show();
+
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
