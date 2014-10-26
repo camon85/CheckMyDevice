@@ -34,6 +34,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    signingConfigs {
+        release {
+            storeFile file("C:\\dev\\CheckMyDeviceKeystore.jks")
+            storePassword "123456"
+            keyAlias "CheckMyDevice"
+            keyPassword "123456"
+        }
+    }
 }
 
 dependencies {
