@@ -17,6 +17,7 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
     private TextView textX;
     private TextView textY;
     private TextView textZ;
+    private TextView textLight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
         textX = (TextView) findViewById(R.id.text_x);
         textY = (TextView) findViewById(R.id.text_y);
         textZ = (TextView) findViewById(R.id.text_z);
+        textLight = (TextView) findViewById(R.id.text_light);
     }
 
     private void showSensorList() {
@@ -51,20 +53,24 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         if (Sensor.TYPE_ACCELEROMETER  == sensorEvent.sensor.getType()) {
-            Log.i("onSensorChanged", "Sensor.TYPE_ACCELEROMETER");
-            getAccelerometer(sensorEvent);
+            showAccelerometer(sensorEvent);
+        } else if (Sensor.TYPE_LIGHT  == sensorEvent.sensor.getType()) {
+            showLightValue(sensorEvent);
         }
     }
 
-    private void getAccelerometer(SensorEvent sensorEvent) {
+    private void showLightValue(SensorEvent sensorEvent) {
+        float lightValue = sensorEvent.values[0];
+        textLight.setText(String.valueOf(lightValue));
+    }
+
+    private void showAccelerometer(SensorEvent sensorEvent) {
         float x = sensorEvent.values[0];
         float y = sensorEvent.values[1];
         float z = sensorEvent.values[2];
-
-        textX.setText(String.valueOf(x));
-        textY.setText(String.valueOf(y));
-        textZ.setText(String.valueOf(z));
-
+        textX.setText("x축 : " + x);
+        textY.setText("y축 : " + y);
+        textZ.setText("z축 : " + z);
     }
 
     @Override
@@ -76,10 +82,8 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
     protected void onResume() {
         super.onResume();
         // register this class as a listener or the orientation and
-        // accelerometer sensorsf
-        sensorManager.registerListener(this,
-                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT), SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
