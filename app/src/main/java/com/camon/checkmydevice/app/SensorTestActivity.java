@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.List;
+
 
 public class SensorTestActivity extends Activity implements SensorEventListener {
     private SensorManager sensorManager;
@@ -21,10 +23,29 @@ public class SensorTestActivity extends Activity implements SensorEventListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_test);
 
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        showSensorList();
+
         textX = (TextView) findViewById(R.id.text_x);
         textY = (TextView) findViewById(R.id.text_y);
         textZ = (TextView) findViewById(R.id.text_z);
+    }
+
+    private void showSensorList() {
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < sensorList.size(); i++) {
+            sb.append("센서 ").append(i).append("번 [");
+            sb.append(sensorList.get(i).getVendor()).append("] ");
+            sb.append(sensorList.get(i).getName()).append("\n");
+        }
+
+        String sensorString = sb.toString();
+        TextView textSensorList = (TextView) findViewById(R.id.text_sensorlist);
+        TextView textSensorCount = (TextView) findViewById(R.id.text_sensor_count);
+        textSensorList.setText(sensorString);
+        textSensorCount.append(String.valueOf(sensorList.size()));
     }
 
     @Override

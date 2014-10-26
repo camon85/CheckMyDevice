@@ -1,23 +1,61 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.camon.checkmydevice.app.SensorTestActivity">
-    <TextView
-        android:text="센서테스트"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-            android:id="@+id/text_x"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    <TextView
-            android:id="@+id/text_y"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    <TextView
-            android:id="@+id/text_z"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-</LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        tools:context="com.camon.checkmydevice.app.SensorTestActivity">
+        <TextView
+                android:id="@+id/text_sensor_count"
+                android:text="발견된 센서의 수 : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        <TextView
+                android:id="@+id/text_sensorlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                    android:text="가속 센서 테스트"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <TextView
+                    android:id="@+id/text_x"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <TextView
+                    android:id="@+id/text_y"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <TextView
+                    android:id="@+id/text_z"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                    android:text="근접 센서 테스트"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
