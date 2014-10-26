@@ -23,12 +23,11 @@
         </activity>
         <activity
             android:name=".PixelActivity"
-            android:label="@string/title_activity_pixel"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name=".SensorTestActivity"
-            android:label="@string/title_activity_sensor_test" >
+            android:label="@string/app_name" >
         </activity>
     </application>
 
