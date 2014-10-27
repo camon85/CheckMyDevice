@@ -19,6 +19,7 @@ public class MultiTouchCustomView extends View {
 
     public MultiTouchCustomView(Context context) {
         super(context);
+
         initView();
     }
 
@@ -28,6 +29,7 @@ public class MultiTouchCustomView extends View {
         // set painter color to a color you like
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+
     }
 
     @Override
