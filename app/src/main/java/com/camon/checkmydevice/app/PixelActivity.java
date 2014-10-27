@@ -34,23 +34,24 @@ public class PixelActivity extends Activity implements View.OnTouchListener{
     public boolean onTouch(View view, MotionEvent motionEvent) {
         Log.i("PixelActivity", "ACTION:" + motionEvent.getAction());
         clearText();
-        changeBackgroundColor(view);
+        view.setBackgroundColor(colorList[currentIndex++]);
+
+        if (isLastColor()) {
+            Log.i("PixelActivity", "isLastColor");
+            this.finish();
+        }
 
         return false;
+    }
+
+    private boolean isLastColor() {
+        return currentIndex >= colorList.length;
     }
 
     private void clearText() {
         String text = tv.getText().toString();
         if (!text.isEmpty()) {
             tv.setText("");
-        }
-    }
-
-    private void changeBackgroundColor(View view) {
-        view.setBackgroundColor(colorList[currentIndex++]);
-
-        if (currentIndex >= colorList.length) {
-            currentIndex = 0;
         }
     }
 }
